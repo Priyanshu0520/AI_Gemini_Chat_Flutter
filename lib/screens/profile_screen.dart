@@ -182,11 +182,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: 'Theme',
                           value: settings.isDarkTheme,
                           onChanged: (value) {
-                            final settingProvider =
-                                context.read<SettingsProvider>();
-                            settingProvider.toggleDarkMode(
-                              value: value,
-                            );
+                            // final settingProvider =
+                            //     context.read<SettingsProvider>();
+                            // settingProvider.toggleDarkMode(
+                            //   value: value,
+                            // );
                           },
                         ),
                       ],

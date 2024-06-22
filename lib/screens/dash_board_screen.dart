@@ -136,44 +136,49 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     width: 17,
                   ),
                   // Right rounded container
-                  Container(
-                    width: 195,
-                    height: 220,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).canvasColor,
-                      borderRadius: BorderRadius.circular(50),
-                      border: Border.all(
-                          color: Theme.of(context).primaryColor, width: 2),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Theme.of(context).primaryColor,
-                          blurRadius: 2,
-                          spreadRadius: 1,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            OutlinedTextWidget(
-                              text: "AI",
-                              fontSize: 50.0,
-                              textColor: Theme.of(context).primaryColor,
-                              outlineColor: Theme.of(context).canvasColor,
-                            ),
-                            OutlinedTextWidget(
-                              text: "voice",
-                              fontSize: 50.0,
-                              textColor: Theme.of(context).primaryColor,
-                              outlineColor: Theme.of(context).canvasColor,
-                            ),
-                          ],
+                  InkWell(
+                    onTap: (){
+                      _showComingSoonSnackBar(context);
+                    },
+                    child: Container(
+                      width: 195,
+                      height: 220,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).canvasColor,
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(
+                            color: Theme.of(context).primaryColor, width: 2),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Theme.of(context).primaryColor,
+                            blurRadius: 2,
+                            spreadRadius: 1,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              OutlinedTextWidget(
+                                text: "AI",
+                                fontSize: 50.0,
+                                textColor: Theme.of(context).primaryColor,
+                                outlineColor: Theme.of(context).canvasColor,
+                              ),
+                              OutlinedTextWidget(
+                                text: "voice",
+                                fontSize: 50.0,
+                                textColor: Theme.of(context).primaryColor,
+                                outlineColor: Theme.of(context).canvasColor,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -224,7 +229,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     );
   }
 }
-
+void _showComingSoonSnackBar(BuildContext context) {
+    final snackBar = SnackBar(
+      content: const Text('Coming Soon!'),
+      duration: const Duration(seconds: 2),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 class OutlinedTextWidget extends StatelessWidget {
   final String text;
   final double fontSize;

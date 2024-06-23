@@ -144,6 +144,7 @@ class _BottomChatFieldState extends State<BottomChatField> {
                     ? null
                     : () {
                         if (textController.text.isNotEmpty) {
+                          print('odne');
                           // send the message
                           sendChatMessage(
                             message: textController.text,

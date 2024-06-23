@@ -1,4 +1,4 @@
 class ApiService {
-    static String apiKey = 'AIzaSyBBs6vthMH1621ftjzWDmFA39mMSmDGxx0';
+    static String apiKey = 'AIzaSyCVgIbpOjEDqJqtBfLbPbOBFg_WMiczX4k';
 
 }

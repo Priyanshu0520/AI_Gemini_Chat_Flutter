@@ -61,169 +61,175 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // const SizedBox(
-            //   height: 300,
-            // ),
-           const  Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 30,
-                            ),
-                         OutlinedTextWidget(
-                              text: "Hello, Priyanshu !!",
-                              fontSize: 35.0,
-                              textColor: Colors.pinkAccent,
-                              outlineColor: Colors.black,
-                            ),
-                            SizedBox(
-                              height:20,
-                            ),
-                      OutlinedTextWidget(
-                              text: "How can I help you today?",
-                              fontSize: 50.0,
-                              textColor: Colors.grey,
-                              outlineColor: Colors.black,
-                            ),
-                          ],
-                        ), 
-                       const SizedBox(
-                              height:30,
-                            ), 
-            Padding(
-              padding: const EdgeInsets.only(left: 5),
-              child: Row(
-                children: [
-                  // Left rounded container
-                  InkWell(
-                     onTap: () {
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const  ChatHistoryScreen()),);
-                },
-                    child: Container(
-                      width: 195,
-                      height: 220,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).canvasColor,
-                        borderRadius: BorderRadius.circular(50),
-                        border: Border.all(
-                            color: Theme.of(context).primaryColor, width: 2),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Theme.of(context).primaryColor,
-                            blurRadius: 2,
-                            spreadRadius: 1,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: OutlinedTextWidget(
-                          text: "History",
-                          fontSize: 50.0,
-                          textColor: Theme.of(context).primaryColor,
-                          outlineColor: Theme.of(context).canvasColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 17,
-                  ),
-                  // Right rounded container
-                  InkWell(
-                    onTap: (){
-                      _showComingSoonSnackBar(context);
-                    },
-                    child: Container(
-                      width: 195,
-                      height: 220,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).canvasColor,
-                        borderRadius: BorderRadius.circular(50),
-                        border: Border.all(
-                            color: Theme.of(context).primaryColor, width: 2),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Theme.of(context).primaryColor,
-                            blurRadius: 2,
-                            spreadRadius: 1,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // const SizedBox(
+              //   height: 300,
+              // ),
+             const  Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SizedBox(
+                              SizedBox(
                                 height: 30,
                               ),
-                              OutlinedTextWidget(
-                                text: "AI",
-                                fontSize: 50.0,
-                                textColor: Theme.of(context).primaryColor,
-                                outlineColor: Theme.of(context).canvasColor,
+                           OutlinedTextWidget(
+                                text: "Hello, Priyanshu !!",
+                                fontSize: 35.0,
+                                textColor: Colors.pinkAccent,
+                                outlineColor: Colors.black,
                               ),
-                              OutlinedTextWidget(
-                                text: "voice",
+                              SizedBox(
+                                height:20,
+                              ),
+                        OutlinedTextWidget(
+                                text: "How can I help you today?",
                                 fontSize: 50.0,
-                                textColor: Theme.of(context).primaryColor,
-                                outlineColor: Theme.of(context).canvasColor,
+                                textColor: Colors.grey,
+                                outlineColor: Colors.grey,
                               ),
                             ],
+                          ), 
+                         const SizedBox(
+                                height:70,
+                              ), 
+                    
+                              
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: Row(
+                  children: [
+                    // Left rounded container
+                    InkWell(
+                       onTap: () {
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const  ChatHistoryScreen()),);
+                  },
+                      child: Container(
+                        width: 195,
+                        height: 220,
+                        decoration: BoxDecoration(
+                               color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(50),
+                          border: Border.all(
+                   color: Theme.of(context).textTheme.titleLarge!.color!, width: 2),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Theme.of(context).primaryColor,
+                              blurRadius: 2,
+                              spreadRadius: 1,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: OutlinedTextWidget(
+                            text: "History",
+                            fontSize: 50.0,
+                            textColor: Theme.of(context).textTheme.titleLarge!.color!,
+                            outlineColor: Theme.of(context).canvasColor,
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20.0),
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ChatScreen()),);
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).canvasColor,
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(
-                        color: Theme.of(context).primaryColor, width: 2),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Theme.of(context).primaryColor,
-                        blurRadius: 2,
-                        spreadRadius: 1,
-                        offset: const Offset(0, 4),
+                    const SizedBox(
+                      width: 17,
+                    ),
+                    // Right rounded container
+                    InkWell(
+                      onTap: (){
+                        _showComingSoonSnackBar(context);
+                      },
+                      child: Container(
+                        width: 195,
+                        height: 220,
+                        decoration: BoxDecoration(
+                               color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(50),
+                          border: Border.all(
+                          color: Theme.of(context).textTheme.titleLarge!.color!, width: 2),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Theme.of(context).primaryColor,
+                              blurRadius: 2,
+                              spreadRadius: 1,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                OutlinedTextWidget(
+                                  text: "AI",
+                                  fontSize: 50.0,
+                                  textColor: Theme.of(context).textTheme.titleLarge!.color!,
+                                  outlineColor: Theme.of(context).canvasColor,
+                                ),
+                                OutlinedTextWidget(
+                                  text: "voice",
+                                  fontSize: 50.0,
+                                  textColor:Theme.of(context).textTheme.titleLarge!.color!,
+                                  outlineColor: Theme.of(context).canvasColor,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
-                    ],
-                  ),
-                  child: Center(
-                    child: OutlinedTextWidget(
-                      text: "Let's Start",
-                      fontSize: 70.0,
-                      textColor: Theme.of(context).primaryColor,
-                      outlineColor: Theme.of(context).canvasColor,
+                    ),
+                  ],
+                ),
+              ),
+                   const SizedBox(
+                                height:50,
+                              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ChatScreen()),);
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 200,
+                    decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(
+                           color: Theme.of(context).textTheme.titleLarge!.color!, width: 2),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Theme.of(context).primaryColor,
+                          blurRadius: 2,
+                          spreadRadius: 1,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: OutlinedTextWidget(
+                        text: "Let's Start",
+                        fontSize: 70.0,
+                        textColor: Theme.of(context).textTheme.titleLarge!.color!,
+                        outlineColor: Theme.of(context).canvasColor,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

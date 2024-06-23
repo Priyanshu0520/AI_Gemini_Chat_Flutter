@@ -12,6 +12,7 @@ class AssistantMessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(message);
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(

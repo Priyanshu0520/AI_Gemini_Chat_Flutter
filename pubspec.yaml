@@ -19,6 +19,7 @@ dependencies:
   path_provider: ^2.1.3
   provider: ^6.1.2
   uuid: ^4.4.0
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   build_runner: ^2.4.11
@@ -27,6 +28,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   hive_generator: ^2.0.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/gemini.png"
 
 flutter:
   uses-material-design: true

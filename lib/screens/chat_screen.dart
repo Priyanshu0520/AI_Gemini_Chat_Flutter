@@ -1,3 +1,5 @@
+import 'package:chatbotapp/screens/dash_board_screen.dart';
+import 'package:chatbotapp/widgets/gradient_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:chatbotapp/providers/chat_provider.dart';
@@ -50,11 +52,16 @@ class _ChatScreenState extends State<ChatScreen> {
           }
         });
 
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        return GradientScaffold(
+           appBar: AppBar(
+               backgroundColor: Colors.transparent,
             centerTitle: true,
-            title: const Text('Chat with Gemini'),
+            title: const OutlinedTextWidget(
+                text: "Chat with Gemini",
+                fontSize: 20.0,
+                textColor: Colors.black38,
+                outlineColor: Colors.black38,
+              ),
             actions: [
               if (chatProvider.inChatMessages.isNotEmpty)
                 Padding(
@@ -81,30 +88,40 @@ class _ChatScreenState extends State<ChatScreen> {
                 )
             ],
           ),
-          body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: chatProvider.inChatMessages.isEmpty
-                        ? const Center(
-                            child: Text('No messages yet'),
-                          )
-                        : ChatMessages(
-                            scrollController: _scrollController,
-                            chatProvider: chatProvider,
-                          ),
-                  ),
 
-                  // input field
-                  BottomChatField(
-                    chatProvider: chatProvider,
-                  )
-                ],
+          body: Stack(
+            children: [SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: chatProvider.inChatMessages.isEmpty
+                          ? const Center(
+                              child: const OutlinedTextWidget(
+                text: "No message yet",
+                fontSize: 20.0,
+                textColor: Colors.black38,
+                outlineColor: Colors.black38,
+              ),
+                            )
+                          : ChatMessages(
+                              scrollController: _scrollController,
+                              chatProvider: chatProvider,
+                            ),
+                    ),
+            
+                    // input field
+                    BottomChatField(
+                      chatProvider: chatProvider,
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
+            
+        ]  ),
+        
         );
       },
     );

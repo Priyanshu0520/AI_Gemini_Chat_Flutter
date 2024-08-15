@@ -75,7 +75,15 @@ class _BottomChatFieldState extends State<BottomChatField> {
         widget.chatProvider.imagesFileList!.isNotEmpty;
 
     return Container(
+      
       decoration: BoxDecoration(
+          gradient: const LinearGradient(
+               tileMode: TileMode.mirror,
+               transform: GradientRotation(80),
+                colors:  [Color.fromARGB(255, 255, 255, 255),Color.fromARGB(255, 255, 255, 255), ],
+                begin: Alignment.topLeft,
+                end: Alignment.topRight,
+              ),
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(30),
         border: Border.all(
@@ -132,6 +140,7 @@ class _BottomChatFieldState extends State<BottomChatField> {
                           }
                         },
                   decoration: InputDecoration.collapsed(
+                    hintStyle: TextStyle(color: Colors.black),
                       hintText: 'Enter a prompt...',
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
@@ -144,8 +153,6 @@ class _BottomChatFieldState extends State<BottomChatField> {
                     ? null
                     : () {
                         if (textController.text.isNotEmpty) {
-                          print('odne');
-                          // send the message
                           sendChatMessage(
                             message: textController.text,
                             chatProvider: widget.chatProvider,
@@ -155,14 +162,14 @@ class _BottomChatFieldState extends State<BottomChatField> {
                       },
                 child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.deepPurple,
+                      color: Colors.cyan,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     margin: const EdgeInsets.all(5.0),
                     child: const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Icon(
-                        // Icons.arrow_upward,
+                        
                         CupertinoIcons.arrow_up,
                         color: Colors.white,
                       ),

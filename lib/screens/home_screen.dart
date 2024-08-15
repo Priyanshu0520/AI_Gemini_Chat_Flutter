@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:chatbotapp/providers/chat_provider.dart';
 import 'package:chatbotapp/screens/chat_history_screen.dart';
-import 'package:chatbotapp/screens/chat_screen.dart';
 import 'package:chatbotapp/screens/profile_screen.dart';
 import 'package:provider/provider.dart';
 

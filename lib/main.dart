@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:chatbotapp/themes/my_theme.dart';
 import 'package:chatbotapp/providers/chat_provider.dart';
 import 'package:chatbotapp/providers/settings_provider.dart';
-import 'package:chatbotapp/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

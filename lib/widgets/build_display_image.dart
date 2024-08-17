@@ -17,18 +17,32 @@ class BuildDisplayImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CircleAvatar(
-          radius: 60.0,
-          backgroundColor: Colors.grey[200],
-          backgroundImage: getImageToShow(),
-        ),
+       Container(
+  decoration: BoxDecoration(
+    shape: BoxShape.circle,  // Ensures the shadow follows the circular shape
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black38, // Shadow color
+        spreadRadius: 5, // How much the shadow spreads
+        blurRadius: 7,   // Softness of the shadow
+        offset:const  Offset(0, 3), // Changes the position of the shadow (x, y)
+      ),
+    ],
+  ),
+  child: CircleAvatar(
+    radius: 60.0,
+    backgroundColor: Colors.grey[200],
+    backgroundImage: getImageToShow(),
+  ),
+)
+,
         Positioned(
           bottom: 0.0,
           right: 0.0,
           child: InkWell(
             onTap: onPressed,
             child: const CircleAvatar(
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.black,
               radius: 20.0,
               child: Icon(
                 Icons.camera_alt,

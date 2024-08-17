@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:chatbotapp/widgets/gradient_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:chatbotapp/hive/boxes.dart';
@@ -72,20 +73,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GradientScaffold(
       appBar: AppBar(
         title: const Text('Profile'),
         centerTitle: true,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        actions: [
-          IconButton(
-            // icon: const Icon(Icons.check),
-            icon: const Icon(CupertinoIcons.checkmark),
-            onPressed: () {
-              // save data
-            },
-          ),
-        ],
+        backgroundColor: Colors.transparent
+      
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -182,11 +175,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: 'Theme',
                           value: settings.isDarkTheme,
                           onChanged: (value) {
-                            final settingProvider =
-                                context.read<SettingsProvider>();
-                            settingProvider.toggleDarkMode(
-                              value: value,
-                            );
+                            // final settingProvider =
+                            //     context.read<SettingsProvider>();
+                            // settingProvider.toggleDarkMode(
+                            //   value: value,
+                            // );
                           },
                         ),
                       ],

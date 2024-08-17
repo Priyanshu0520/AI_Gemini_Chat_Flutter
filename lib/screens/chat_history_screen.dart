@@ -1,3 +1,4 @@
+import 'package:chatbotapp/widgets/gradient_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:chatbotapp/hive/boxes.dart';
 import 'package:chatbotapp/hive/chat_history.dart';
@@ -15,9 +16,9 @@ class ChatHistoryScreen extends StatefulWidget {
 class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GradientScaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          backgroundColor: Colors.transparent,
         centerTitle: true,
         title: const Text('Chat History'),
       ),
@@ -29,7 +30,7 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
           return chatHistory.isEmpty
               ? const EmptyHistoryWidget()
               : Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(left: 8.0,bottom: 8),
                   child: ListView.builder(
                     itemCount: chatHistory.length,
                     itemBuilder: (context, index) {

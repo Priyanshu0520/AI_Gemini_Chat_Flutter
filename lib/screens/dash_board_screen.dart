@@ -5,6 +5,7 @@ import 'package:chatbotapp/screens/chat_screen.dart';
 import 'package:chatbotapp/screens/profile_screen.dart';
 import 'package:chatbotapp/widgets/gradient_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({super.key});
@@ -13,7 +14,35 @@ class DashBoardScreen extends StatefulWidget {
   State<DashBoardScreen> createState() => _DashBoardScreenState();
 }
 
-class _DashBoardScreenState extends State<DashBoardScreen> {
+class _DashBoardScreenState extends State<DashBoardScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<int> _animation;
+  final String _text = '👋 Hello, Priyanshu !!';
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      duration: const Duration(seconds: 3), // Duration of the animation
+      vsync: this,
+    );
+
+    _animation = IntTween(begin: 0, end: _text.length).animate(_controller)
+      ..addListener(() {
+        setState(() {});
+      });
+
+    _controller.forward(); // Start the animation
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose(); // Dispose of the controller when done
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
@@ -26,23 +55,25 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             const CircleAvatar(
               backgroundColor: Colors.transparent,
               radius: 25,
-              backgroundImage: AssetImage('assets/images/gemini.png'),
+              backgroundImage: AssetImage('assets/images/gemini2.png'),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 10 , top: 10.0),
-              child: OutlinedTextWidget(
-                text: "Gemini Chat",
-                fontSize: 20.0,
-                textColor: Color.fromARGB(255, 3, 3, 3),
-                outlineColor: Colors.black38,
-              ),
-            ),
+            Padding(
+                padding: const EdgeInsets.only(left: 10, top: 10.0),
+                child: Text(
+                  'Gemini Chat',
+                  style: GoogleFonts.cabin(
+                    textStyle: Theme.of(context).textTheme.displayLarge,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w400,
+                  ),
+                )),
             const Spacer(),
             InkWell(
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ProfileScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const ProfileScreen()),
                 );
               },
               child: const CircleAvatar(
@@ -60,151 +91,173 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 30),
-              const OutlinedTextWidget(
-                text: "Hello, Priyanshu !!",
-                fontSize: 35.0,
-                textColor: Color.fromARGB(255, 255, 8, 8),
-                outlineColor: Color.fromARGB(255, 255, 202, 202),
-              ),
-              const SizedBox(height: 20),
-              const OutlinedTextWidget(
-                text: "How can I help you today?",
-                fontSize: 50.0,
-                textColor: Colors.grey,
-                outlineColor: Color.fromARGB(255, 51, 51, 51),
-              ),
-              const SizedBox(height: 50),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
                 children: [
-                  Flexible(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const ChatHistoryScreen()),
-                        );
-                      },
-                      child: Container(
-                        height: MediaQuery.of(context).size.width * 0.45,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(50),
-                          border: Border.all(
-                            color: Theme.of(context).textTheme.titleLarge!.color!,
-                            width: 2,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Theme.of(context).primaryColor,
-                              blurRadius: 2,
-                              spreadRadius: 1,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: Center(
-                          child: OutlinedTextWidget(
-                            text: "History",
-                            fontSize: 40.0,
-                            textColor: Theme.of(context).textTheme.titleLarge!.color!,
-                            outlineColor: Theme.of(context).canvasColor,
-                          ),
-                        ),
-                      ),
+                  Text(
+                    _text.substring(0, _animation.value),
+                    style: GoogleFonts.cabin(
+                      textStyle: Theme.of(context).textTheme.displayLarge,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w200,
                     ),
                   ),
-                  const SizedBox(width: 17),
-                  Flexible(
-                    child: InkWell(
-                      onTap: () {
-                        _showComingSoonSnackBar(context);
-                      },
-                      child: Container(
-                        height: MediaQuery.of(context).size.width * 0.45,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(50),
-                          border: Border.all(
-                            color: Theme.of(context).textTheme.titleLarge!.color!,
-                            width: 2,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Theme.of(context).primaryColor,
-                              blurRadius: 2,
-                              spreadRadius: 1,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                OutlinedTextWidget(
-                                  text: "AI",
-                                  fontSize: 40.0,
-                                  textColor: Theme.of(context).textTheme.titleLarge!.color!,
-                                  outlineColor: Theme.of(context).canvasColor,
-                                ),
-                                OutlinedTextWidget(
-                                  text: "voice",
-                                  fontSize: 50.0,
-                                  textColor: Theme.of(context).textTheme.titleLarge!.color!,
-                                  outlineColor: Theme.of(context).canvasColor,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                  Text(
+                    '     Welcome to Gemini',
+                    style: GoogleFonts.cabin(
+                      textStyle: Theme.of(context).textTheme.labelSmall,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w100,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const ChatScreen()),
-                    );
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.width * 0.4,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
-                      borderRadius: BorderRadius.circular(50),
-                      border: Border.all(
-                        color: Theme.of(context).textTheme.titleLarge!.color!,
-                        width: 2,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Theme.of(context).primaryColor,
-                          blurRadius: 2,
-                          spreadRadius: 1,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: OutlinedTextWidget(
-                        text: "Let's Start",
-                        fontSize: 50.0,
-                        textColor: Theme.of(context).textTheme.titleLarge!.color!,
-                        outlineColor: Theme.of(context).canvasColor,
-                      ),
-                    ),
+                padding: const EdgeInsets.only(left: 18.0),
+                child: Text(
+                  'How can I help you today ?',
+                  style: GoogleFonts.cabin(
+                    textStyle: Theme.of(context).textTheme.displayMedium,
+                    fontSize: 39,
+                    fontWeight: FontWeight.w100,
                   ),
                 ),
               ),
+              const SizedBox(height: 50),
+             Padding(
+               padding: const EdgeInsets.only(left:25.0,bottom: 50, top: 10),
+               child: InkWell(
+                  onTap: () {
+                         Navigator.push(
+                           context,
+                           MaterialPageRoute(
+                               builder: (context) => const ChatHistoryScreen()),
+                         );
+                       },
+                 child: Container(
+                   width: MediaQuery.of(context).size.width * 0.81,
+                   height: MediaQuery.of(context).size.width * 0.17,
+                   decoration: BoxDecoration(
+                     color: Theme.of(context).cardColor,
+                     borderRadius: BorderRadius.circular(50),
+                     border: Border.all(
+                       color: Theme.of(context).textTheme.titleLarge!.color!,
+                       width: 2,
+                     ),
+                     boxShadow: [
+                       const BoxShadow(
+                         color: Colors.black,
+                         blurRadius: 2,
+                         spreadRadius: 1,
+                         offset: Offset(0, 2),
+                       ),
+                     ],
+                   ),
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                       Image.asset('assets/images/image 2.png'),
+                       Text(
+                         'History',
+                         style: GoogleFonts.cabin(
+                           fontSize: 35,
+                           fontWeight: FontWeight.w400,
+                         ),
+                       ),
+                     ],
+                   ),
+                 ),
+               ),
+             ),
+              Padding(
+               padding: const EdgeInsets.only(left:25.0,bottom: 50),
+               child: InkWell(
+                  onTap: () {
+                           _showComingSoonSnackBar(context);
+                       },
+                 child: Container(
+                   width: MediaQuery.of(context).size.width * 0.81,
+                   height: MediaQuery.of(context).size.width * 0.17,
+                   decoration: BoxDecoration(
+                     color: Theme.of(context).cardColor,
+                     borderRadius: BorderRadius.circular(50),
+                     border: Border.all(
+                       color: Theme.of(context).textTheme.titleLarge!.color!,
+                       width: 2,
+                     ),
+                     boxShadow: [
+                       const BoxShadow(
+                         color: Colors.black,
+                         blurRadius: 2,
+                         spreadRadius: 1,
+                         offset: Offset(0, 2),
+                       ),
+                     ],
+                   ),
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                       Image.asset('assets/images/image 3.png'),
+                       Text(
+                         ' AI Voice',
+                         style: GoogleFonts.cabin(
+                           fontSize: 35,
+                           fontWeight: FontWeight.w400,
+                         ),
+                       ),
+                     ],
+                   ),
+                 ),
+               ),
+             ),
+             Padding(
+               padding: const EdgeInsets.only(left:25.0,bottom: 50),
+               child: InkWell(
+                  onTap: () {
+                         Navigator.push(
+                           context,
+                           MaterialPageRoute(
+                               builder: (context) => const ChatScreen()),
+                         );
+                       },
+                 child: Container(
+                   width: MediaQuery.of(context).size.width * 0.81,
+                   height: MediaQuery.of(context).size.width * 0.17,
+                   decoration: BoxDecoration(
+                     color: Theme.of(context).cardColor,
+                     borderRadius: BorderRadius.circular(50),
+                     border: Border.all(
+                       color: Theme.of(context).textTheme.titleLarge!.color!,
+                       width: 2,
+                     ),
+                     boxShadow: [
+                    const    BoxShadow(
+                         color: Colors.black,
+                         blurRadius: 2,
+                         spreadRadius: 1,
+                         offset:  Offset(0, 2),
+                       ),
+                     ],
+                   ),
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                     
+                       Text(
+                         'Let’s Start  ',
+                         style: GoogleFonts.cabin(
+                           fontSize: 35,
+                           fontWeight: FontWeight.w400,
+                         ),
+                       ),
+                         Image.asset('assets/images/Vector.png', scale: 0.7,),
+                     ],
+                   ),
+                 ),
+               ),
+             ),
+             
+          
             ],
           ),
         ),
@@ -213,66 +266,26 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   }
 
   void _showComingSoonSnackBar(BuildContext context) {
-    const snackBar = SnackBar(
-      content: Text('Coming Soon!'),
-      duration: Duration(seconds: 2),
+    final snackBar = SnackBar(
+      
+      content: Text(
+             "Coming soon",
+                         style: GoogleFonts.cabin(
+                           fontSize: 17,
+                           fontWeight: FontWeight.w400,
+                           color: Colors.black
+                         ),
+                       ),
+      duration: Duration(seconds: 1),
+      
+      backgroundColor: Colors.white,
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
 
-class OutlinedTextWidget extends StatelessWidget {
-  final String text;
-  final double fontSize;
-  final Color textColor;
-  final Color outlineColor;
-
-  const OutlinedTextWidget({super.key, 
-    required this.text,
-    this.fontSize = 35.0,
-    this.textColor = Colors.black,
-    this.outlineColor = Colors.white,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ShaderMask(
-      shaderCallback: (Rect bounds) {
-        return LinearGradient(
-          colors: [outlineColor, outlineColor, textColor, textColor],
-          stops: const [0.0, 0.0, 1, 0],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ).createShader(bounds);
-      },
-      blendMode: BlendMode.srcATop,
-      child: Stack(
-        children: [
-          Text(
-            text,
-            style: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: outlineColor,
-            ),
-          ),
-          Text(
-            text,
-            style: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: textColor,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 Widget getAppBarGradientContainer(BuildContext context) {
-
-  return  const Stack(
+  return const Stack(
     children: [
       Positioned.fill(
         child: DecoratedBox(
@@ -284,7 +297,7 @@ Widget getAppBarGradientContainer(BuildContext context) {
           heightFactor: 0.567,
           alignment: Alignment.bottomCenter,
           child: DecoratedBox(
-         decoration: BoxDecoration(color: Colors.black12),
+            decoration: BoxDecoration(color: Colors.black12),
           ),
         ),
       ),

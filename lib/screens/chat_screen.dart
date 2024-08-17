@@ -6,6 +6,7 @@ import 'package:chatbotapp/providers/chat_provider.dart';
 import 'package:chatbotapp/utility/animated_dialog.dart';
 import 'package:chatbotapp/widgets/bottom_chat_field.dart';
 import 'package:chatbotapp/widgets/chat_messages.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -53,15 +54,16 @@ class _ChatScreenState extends State<ChatScreen> {
         });
 
         return GradientScaffold(
-           appBar: AppBar(
-               backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
             centerTitle: true,
-            title: const OutlinedTextWidget(
-                text: "Chat with Gemini",
-                fontSize: 20.0,
-                textColor: Colors.black38,
-                outlineColor: Colors.black38,
+            title: Text(
+              "Chat with Gemini",
+              style: GoogleFonts.cabin(
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
               ),
+            ),
             actions: [
               if (chatProvider.inChatMessages.isNotEmpty)
                 Padding(
@@ -88,29 +90,29 @@ class _ChatScreenState extends State<ChatScreen> {
                 )
             ],
           ),
-
-          body: Stack(
-            children: [SafeArea(
+          body: Stack(children: [
+            SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
                     Expanded(
                       child: chatProvider.inChatMessages.isEmpty
-                          ? const Center(
-                              child: const OutlinedTextWidget(
-                text: "No message yet",
-                fontSize: 20.0,
-                textColor: Colors.black38,
-                outlineColor: Colors.black38,
-              ),
+                          ? Center(
+                              child: Text(
+                                "No message yet",
+                                style: GoogleFonts.cabin(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
                             )
                           : ChatMessages(
                               scrollController: _scrollController,
                               chatProvider: chatProvider,
                             ),
                     ),
-            
+
                     // input field
                     BottomChatField(
                       chatProvider: chatProvider,
@@ -119,9 +121,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
               ),
             ),
-            
-        ]  ),
-        
+          ]),
         );
       },
     );
